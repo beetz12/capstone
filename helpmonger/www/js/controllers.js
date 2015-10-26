@@ -2,6 +2,14 @@ angular.module('starter.controllers', [])
 
 .controller('DashCtrl', function($scope) {})
 
+.controller('LoginCtrl', function($scope, $state) {
+
+    $scope.LogIn = function(user) {
+      $state.go('tab.dash'); //Need to redirect to main screen.
+    };
+
+})
+
 .controller('ChatsCtrl', function($scope, Chats) {
   // With the new view caching in Ionic, Controllers are only called
   // when they are recreated or on app start, instead of every page change.
