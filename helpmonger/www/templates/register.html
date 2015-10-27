@@ -1,17 +1,17 @@
-<ion-view title="Sign-In">
+<ion-view title="Register">
         <ion-content>
           <div class="list">
             <label class="item item-input">
               <span class="input-label">Username</span>
-              <input type="text" ng-model="data.username">
+              <input type="text" ng-model="user.username">
             </label>
             <label class="item item-input">
               <span class="input-label">Password</span>
-              <input type="password" ng-model="data.password">
+              <input type="password" ng-model="user.password">
             </label>
           </div>
           <div class="padding">
-            <button nav-clear class="button button-block button-positive" ng-click="login()">
+            <button nav-clear class="button button-block button-positive" ng-click="Register(user)">
               Sign-In
             </button>
 
