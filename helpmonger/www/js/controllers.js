@@ -5,7 +5,7 @@ angular.module('starter.controllers', [])
 .controller('LoginCtrl', function($scope, LoginService, $ionicPopup, $state, $http) {
     $scope.data = {}
     $scope.login = function() {
-       LoginService.urlLogin().success(function(data) {
+       LoginService.urlLogin($scope.data.username, $scope.data.password).success(function(data) {
            $state.go('tab.dash');
        }).error(function(data) {
            var alertPopup = $ionicPopup.alert({

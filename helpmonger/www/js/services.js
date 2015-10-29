@@ -19,12 +19,14 @@ angular.module('starter.services', [])
 
 .service('LoginService', function($q, $http) {
     return {
-      urlLogin: function() {
+      urlLogin: function(username, pw) {
         return $http ({
-          url: 'http://localhost:8080/register',
+          url: 'http://localhost:8080/api/authenticate',
           method: 'POST',
-          data: JSON.stringify({ username: 'user', password: 'test', email:'test@edu'}),
-          headers: {'Content-Type': 'application/json'},
+          data: "username="+encodeURIComponent(username)+"&password="+encodeURIComponent(pw),
+          headers: {
+            'Content-Type': 'application/x-www-form-urlencoded',
+          },
         })
       }
     }
@@ -48,7 +50,7 @@ angular.module('starter.services', [])
     //             return promise;
     //         }
     //         // return promise;
-    //         // var form = { username: 'user', password: '', opaque: 'someValue', logintype: '1'};
+
     //
     //
     //     }
