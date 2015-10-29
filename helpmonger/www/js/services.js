@@ -1,27 +1,58 @@
 angular.module('starter.services', [])
 
-.service('LoginService', function($q) {
-    return {
-        loginUser: function(name, pw) {
-            var deferred = $q.defer();
-            var promise = deferred.promise;
 
-            if (name == 'admin' && pw == 'admin') {
-                deferred.resolve('Welcome ' + name + '!');
-            } else {
-                deferred.reject('Wrong credentials.');
-            }
-            promise.success = function(fn) {
-                promise.then(fn);
-                return promise;
-            }
-            promise.error = function(fn) {
-                promise.then(null, fn);
-                return promise;
-            }
-            return promise;
-        }
+//
+// $http.post("http://localhost:8080/register", cred)
+// .success(function(response)
+// {
+//    usr.isAuth = response.data.success;
+//    usr.username = response.data.user;
+//    usr.password = response.data.password;
+//
+//    cacheSession();
+// })
+// .error(function(err)
+// {
+//    uncacheSession();
+// });
+
+
+.service('LoginService', function($q, $http) {
+    return {
+      urlLogin: function() {
+        return $http ({
+          url: 'http://localhost:8080/register',
+          method: 'POST',
+          data: JSON.stringify({ username: 'user', password: 'test', email:'test@edu'}),
+          headers: {'Content-Type': 'application/json'},
+        })
+      }
     }
+
+      // return {
+    //     loginUser: function(name, pw) {
+    //         var deferred = $q.defer();
+    //         var promise = deferred.promise;
+    //
+    //         if (name == 'admin' && pw == 'admin') {
+    //             deferred.resolve('Welcome ' + name + '!');
+    //         } else {
+    //             deferred.reject('Wrong credentials.');
+    //         }
+    //         promise.success = function(fn) {
+    //             promise.then(fn);
+    //             return promise;
+    //         }
+    //         promise.error = function(fn) {
+    //             promise.then(null, fn);
+    //             return promise;
+    //         }
+    //         // return promise;
+    //         // var form = { username: 'user', password: '', opaque: 'someValue', logintype: '1'};
+    //
+    //
+    //     }
+    // }
 })
 
 .factory('Chats', function() {
