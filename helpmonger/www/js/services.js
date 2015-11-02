@@ -20,14 +20,17 @@ angular.module('starter.services', [])
 .service('LoginService', function($q, $http) {
     return {
       urlLogin: function(username, pw) {
-        return $http ({
-          url: 'http://localhost:8080/api/authenticate',
+
+        var response = $http ({
+          url: 'http://helpmonger.cse.sc.edu:8080/api/authenticate',
           method: 'POST',
           data: "username="+encodeURIComponent(username)+"&password="+encodeURIComponent(pw),
           headers: {
             'Content-Type': 'application/x-www-form-urlencoded',
           },
         })
+
+
       }
     }
 
@@ -50,7 +53,7 @@ angular.module('starter.services', [])
     //             return promise;
     //         }
     //         // return promise;
-
+    //
     //
     //
     //     }

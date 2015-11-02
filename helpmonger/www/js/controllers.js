@@ -4,15 +4,32 @@ angular.module('starter.controllers', [])
 
 .controller('LoginCtrl', function($scope, LoginService, $ionicPopup, $state, $http) {
     $scope.data = {}
+
+
     $scope.login = function() {
-       LoginService.urlLogin($scope.data.username, $scope.data.password).success(function(data) {
-           $state.go('tab.dash');
-       }).error(function(data) {
-           var alertPopup = $ionicPopup.alert({
-               title: 'Login failed!',
-               template: 'Your username/password combination is incorrect.'
-           });
-       });
+    username = $scope.data.username,
+    pw = $scope.data.password
+    $http ({
+        url: 'http://helpmonger.cse.sc.edu:8080/api/authenticate',
+        method: 'POST',
+        data: "username="+encodeURIComponent(username)+"&password="+encodeURIComponent(pw),
+        headers: {
+          'Content-Type': 'application/x-www-form-urlencoded',
+        },
+      }).then(function(data) {
+        if (data.data.success == "true") {
+          return $state.go('tab.dash');
+        }
+      })
+
+    //
+    //        $state.go('tab.dash');
+    // error(function(data) {
+    //        var alertPopup = $ionicPopup.alert({
+    //            title: 'Login failed!',
+    //            template: 'Your username/password combination is incorrect.'
+    //        });
+    //    });
    }
 })
 
