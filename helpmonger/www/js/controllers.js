@@ -17,8 +17,12 @@ angular.module('starter.controllers', [])
           'Content-Type': 'application/x-www-form-urlencoded',
         },
       }).then(function(data) {
-        if (data.data.success == "true") {
+        // alert(data.data.success);
+        if (String(data.data.success).localeCompare("true") == 0) {
+          // alert("true");
           return $state.go('tab.dash');
+        } else {
+          // alert("false");
         }
       })
 
